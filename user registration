@@ -1,0 +1,36 @@
+package com.example.userregistration;
+
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+    private UserRepository repository;
+
+    public UserController(UserRepository repository) {
+        this.repository = repository;
+    }
+
+    @PostMapping("/register")
+    public User register(@RequestBody User user) {
+        return repository.save(user);
+    }
+
+    @GetMapping
+    public List<User> getUsers() {
+        return repository.findAll();
+    }
+
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable int id, @RequestBody User user) {
+        user.setId(id);
+        return repository.save(user);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable int id) {
+        repository.deleteById(id);
+        return "User deleted successfully";
+    }
+}
