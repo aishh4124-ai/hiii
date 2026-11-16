@@ -1,0 +1,69 @@
+USESTATE
+import { useState } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+      <button onClick={() => setCount(count + 1)}>+</button>
+    </div>
+  );
+}
+export default App;
+
+
+USEEFFECT
+
+import { useEffect, useState } from "react";
+
+function App() {
+  useEffect(() => {
+    alert("Welcome");
+  }, []);
+
+  return <h2>Hello</h2>;
+}
+export default app;
+
+
+USECONTEXT
+import { createContext, useContext } from "react";
+
+const Name = createContext();
+
+function App() {
+  return (
+    <Name.Provider value="Gowri">
+      <Student />
+    </Name.Provider>
+  );
+}
+
+function Student() {
+  const name = useContext(Name);
+
+  return <h1>Good morning {name}</h1>;
+}
+
+export default App;
+
+USEREDUCER
+import { useReducer } from "react";
+
+function App() {
+  const [status, dispatch] = useReducer(
+    (s, a) => a,
+    "Logout"
+  );
+
+  return (
+    <>
+      <h2>{status}</h2>
+      <button onClick={() => dispatch("Login")}>Login</button>
+    </>
+  );
+}
+
+export default App;
