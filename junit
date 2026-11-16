@@ -1,0 +1,43 @@
+package com.example.userregistration;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class UserApplicationTest {
+
+    @Autowired
+    UserRepository repo;
+
+    @Test
+    void create() {
+        User u = new User();
+        u.setName("John");
+        u.setEmail("john@gmail.com");
+        u.setPassword("1234");
+        repo.save(u);
+        assertNotNull(u.getId());
+    }
+
+    @Test
+    void read() {
+        assertFalse(repo.findAll().isEmpty());
+    }
+
+    @Test
+    void update() {
+        User u = repo.findAll().get(0);
+        u.setName("David");
+        repo.save(u);
+        assertEquals("David", repo.findById(u.getId()).get().getName());
+    }
+
+    @Test
+    void delete() {
+        User u = repo.findAll().get(0);
+        repo.deleteById(u.getId());
+        assertFalse(repo.existsById(u.getId()));
+    }
+}
