@@ -1,0 +1,93 @@
+function Welcome() {
+  return (
+    <h2>Welcome to React</h2>
+  );
+}
+
+export default Welcome;
+
+
+import Welcome from "./Welcome";
+
+function App() {
+  return (
+    <div>
+      <Welcome />
+    </div>
+  );
+}
+
+export default App;
+
+import React, { Component } from "react";
+
+class Welcome extends Component {
+  render() {
+    return (
+      <h2>Welcome to React Class Component</h2>
+    );
+  }
+}
+
+export default Welcome;
+
+props
+
+function Student(props) {
+  return (
+    <div>
+      <h2>Student Name: {props.name}</h2>
+      <h2>Branch: {props.branch}</h2>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <Student name="AISH" branch="CSE" />
+    </div>
+  );
+}
+
+export default App;
+
+
+### 4. State (`useState` Hook)
+
+import { useState } from "react";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h2>Count: {count}</h2>
+      <button onClick={() => setCount(count + 1)}>
+        Click Me
+      </button>
+    </div>
+  );
+}
+
+export default App;
+
+
+### 5. Rendering List with Keys (`.map()`)
+
+function App() {
+  const fruits = ["Apple", "Banana", "Mango", "Orange"];
+
+  return (
+    <div>
+      <h2>Fruit List</h2>
+      <ul>
+        {fruits.map((fruit, index) => (
+          <li key={index}>{fruit}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
