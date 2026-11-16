@@ -1,0 +1,82 @@
+spring.application.name=studentapi
+spring.datasource.url=jdbc:mysql://localhost:3306/college
+spring.datasource.username=root
+spring.datasource.password=Vvp-dlt
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+
+package com.example.studentapi;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Student {
+    @Id
+    private int id;
+    private String name;
+    private String course;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+}
+
+
+package com.example.mongocrud;
+
+import java.util.List;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/students")
+public class StudentController {
+    private final StudentRepository repo;
+
+    public StudentController(StudentRepository repo) {
+        this.repo = repo;
+    }
+
+    @PostMapping
+    public Student add(@RequestBody Student student) {
+        return repo.save(student);
+    }
+
+    @GetMapping
+    public List<Student> getAll() {
+        return repo.findAll();
+    }
+
+    @PutMapping("/{id}")
+    public Student update(@PathVariable String id, @RequestBody Student student) {
+        student.setId(id);
+        return repo.save(student);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        repo.deleteById(id);
+    }
+}
+}
