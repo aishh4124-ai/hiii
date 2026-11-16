@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="form">
+    <h2>Registration Form</h2>
+
+    <input id="name" placeholder="Name"><br><br>
+
+    <input id="email" type="email" placeholder="Email"><br><br>
+
+    <input id="phone" placeholder="Phone"><br><br>
+
+    <select id="course">
+        <option>CSE</option>
+        <option>AIML</option>
+        <option>ECE</option>
+    </select><br><br>
+
+    <textarea id="address" placeholder="Address"></textarea><br><br>
+
+    <button onclick="show()">Submit</button>
+</div>
+
+<div id="result"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+body {
+    font-family: Arial;
+    background: rgb(192, 192, 233);
+}
+
+#form {
+    width: 320px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+}
+
+input,
+select,
+textarea,
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+
+js
+
+function show(){
+
+  result.innerHTML =
+  "<h3>Registration Successful</h3>" +
+  "Name : " + name.value + "<br>" +
+  "Email : " + email.value + "<br>" +
+  "Phone : " + phone.value + "<br>" +
+  "Course : " + course.value + "<br>" +
+  "Address : " + address.value;
+
+  form.style.display = "none";
+
+}
+
+
