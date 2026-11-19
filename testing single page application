@@ -1,0 +1,28 @@
+import { useState } from "react";
+function Registration(){
+  const[msg,setMsg]=useState(" ");
+  return(
+    <div>
+      <h2>Registration form</h2>
+      <input placeholder="Name"/>
+      <input placeholder="Email"/>
+      <button onClick={()=> setMsg("registered succesfully")}>Registered</button>
+<p>{msg}</p>
+    </div>
+  );
+}
+export default Registration;
+
+import Registration from "./Registration;
+function App(){
+return< Register/>;
+}
+export default App;
+
+import { render, screen } from "@testing-library/react";
+import App from "./App"
+
+test("registration test", () => {
+  render(<Registration />);
+  expect(screen.getByText("Registration")).toBeInTheDocument();
+});
