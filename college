@@ -1,0 +1,33 @@
+using Microsoft.AspNetCore.Mvc;
+
+namespace StudentAPI.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class StudentController : ControllerBase
+    {
+        [HttpGet]
+        public object Get()
+        {
+            return new { Name = "Aish", Course = "CS" };
+        }
+    }
+}
+
+
+using Microsoft.AspNetCore.Mvc;
+
+namespace CollegeAPI.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CollegeController : ControllerBase
+    {
+        [HttpGet]
+        public async Task<string> Get()
+        {
+            return await new HttpClient().GetStringAsync(
+                "https://localhost:7011/api/Student");
+        }
+    }
+}
